@@ -11,12 +11,6 @@ class turns {
     get_turn(){
         return `Consulta: turno para ${this.client} con el/la profesional ${this.Profesional}, el día ${this.date} a las ${this.hour}.`;
     }
-
-    set_turn(date, hour){
-        this.date = date;
-        this.hour = hour;
-        this.get_turn();
-    }
 }
 
 let arrayProf = ["Agustín Pérez", "Linus Torvalds", "Bill Gates"];
@@ -37,14 +31,14 @@ function interfaz(){
         let dr = Number(prompt('Seleccione el Médico Clínico para crear un turno nuevo:\n' + texto));
 
         texto = "";
-        for(let drs = 0; drs < arrayDays.length; drs++){
-            texto += `${(drs + 1).toString()} - ${arrayDays[drs]}\n`
+        for(let days = 0; days < arrayDays.length; days++){
+            texto += `${(days + 1).toString()} - ${arrayDays[days]}\n`
         }
         let day = Number(prompt('Seleccione el día:\n' + texto));
         
         texto = "";
-        for(let drs = 0; drs < arrayHours.length; drs++){
-            texto += `${(drs + 1).toString()} - ${arrayHours[drs]}\n`
+        for(let hours = 0; hours < arrayHours.length; hours++){
+            texto += `${(hours + 1).toString()} - ${arrayHours[hours]}\n`
         }
         let hour = Number(prompt('Seleccione un horario: \n ' + texto));
 
