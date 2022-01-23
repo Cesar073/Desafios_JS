@@ -65,7 +65,8 @@ function aux_select_client(){
 }
 
 function add_turns(){
-    let nameClient = prompt("Ingrese su nombre:")
+    let nameClient = prompt("Ingrese su nombre:");
+    arrayPatient.push(nameClient)
 
     let dr = aux_select_prof();
 
@@ -73,7 +74,7 @@ function add_turns(){
 
     let hour = aux_select_hour();
 
-    arrayTurns.push(new turns(arrayProf[dr - 1], arrayDays[day - 1],arrayHours[hour - 1], nameClient));
+    arrayTurns.push(new turns(arrayProf[dr], arrayDays[day],arrayHours[hour], nameClient));
 
     //Imprimimos el turno agregado
     position = arrayTurns.length - 1

@@ -1,4 +1,4 @@
-// Clase 5. Incorporar objetos
+// Clase 6. Incorporar Arrays
 
 class turns {
     constructor(profesional, date, hour, client){

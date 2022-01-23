@@ -11,12 +11,6 @@ class turns {
     get_turn(){
         return `Consulta: turno para ${this.client} con el/la Doctor/a ${this.Profesional}, el día ${this.date} a las ${this.hour}hs.`;
     }
-
-    set_turn(date, hour){
-        this.date = date;
-        this.hour = hour;
-        this.get_turn();
-    }
 }
 
 let turn1 = new turns("Agustín Pérez", "viernes 29", "18:00", "Juan Carlos Gonzalez");
