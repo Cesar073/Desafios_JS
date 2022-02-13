@@ -1,0 +1,55 @@
+@charset "UTF-8";
+/* GENERALES */
+/* TAMAÑOS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 70%;
+    margin: 50px auto 50px;
+}
+body p{
+    font-size: 1.5rem;
+}
+
+#turns_title {
+    font-size: 3rem;
+}
+
+#turns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.left {
+    display: grid;
+    height: 50px;
+    justify-items: center;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin: 5px;
+    grid-column: 1/2;
+    border: 1px solid blue;
+}
+.left:hover {
+    background: rgb(195, 188, 188);
+}
+
+.right {
+    display: grid;
+    height: 50px;
+    justify-items: center;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin: 5px;
+    grid-column: 2/3;
+    border: 1px solid blue;
+}
+.right:hover {
+    background: rgb(195, 188, 188);
+}
+
+div p {
+    align-self: center;
+}
