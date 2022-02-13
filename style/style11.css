@@ -1,0 +1,37 @@
+@charset "UTF-8";
+/* GENERALES */
+/* TAMAÑOS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 80%;
+    background: linear-gradient(to right, #b92b27, #1565C0);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 100vh;
+    margin: auto;
+}
+
+div {
+    margin-top: 200px;
+    width: 300px;
+    height: 300px;
+    justify-self: center;
+}
+
+button {
+    font-size: 2rem;font-style: italic;
+    margin-top: 250px;
+    width: 300px;
+    height: 200px;
+    background: #ecae1d;
+    justify-self: center;
+}
+
+p {
+    color: white
+}

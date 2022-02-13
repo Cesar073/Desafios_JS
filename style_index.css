@@ -1,0 +1,31 @@
+@charset "UTF-8";
+/* GENERALES */
+/* TAMAÑOS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    width: 80%;
+    margin:auto;
+}
+
+nav {
+    display: grid;
+    font-size: 150%;
+    grid-template-columns: 20% 70%;
+    align-content: start;
+}
+
+main {
+    font-size: 200%;
+}
+
+img {
+    border: 5px solid white;
+    width: 100%;
+}
+
