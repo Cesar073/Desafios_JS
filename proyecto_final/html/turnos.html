@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;1,300&family=Raleway:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="nav">
+        <div class="logo">
+            <div class="logo__div">
+                <img src="../img/logo.png" alt="">
+            </div>
+            <h1>Sanatorio<br>Nick Riviera</h1>
+        </div>
+        <ul class="nav__list">
+            <li><a class="nav-link" href="../index.html">Inicio</a></li>
+            <li><a class="nav-link" href="./turnos.html">Turnos</a></li>
+            <li><a class="nav-link" href="./profesionales.html">Profesionales</a></li>
+            <li><a class="nav-link" href="./contacto.html">Contacto</a></li>
+            <li><a class="nav-link" href="./nosotros.html">Nosotros</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section class="search_container">
+            <label for="">Buscar por:</label>
+            <div>
+                <label for="input_prof">Profesional</label>
+                <div class="div_input_btn">
+                    <input id="input_professional" type="text" name="input_prof">
+                    <button type="button"><img src="../img/lupa.png" alt=""></button>
+                </div>
+            </div>
+            <div>
+                <label for="input_dia">Día</label>
+                <div class="div_input_btn">
+                    <input id="input_day" type="text" name="input_dia">
+                    <button type="button"><img src="../img/lupa.png" alt=""></button>
+                </div>
+            </div>
+            <div>
+                <label for="input_esp">Especialización</label>
+                <div class="div_input_btn">
+                    <input id="input_specialization" type="text" name="input_esp">
+                    <button type="button"><img src="../img/lupa.png" alt=""></button>
+                </div>
+            </div>
+        </section>
+        <section class="references">
+            <div>
+                <div class="reference">
+                    <p>Turno disponible</p>
+                    <div class="graphic_refernce_1"></div>
+                </div>
+                <div class="reference">
+                    <p>Turno ocupado</p>
+                    <div class="graphic_refernce_2"></div>
+                </div>
+                <div class="reference">
+                    <p>El profesional no trabaja este turno</p>
+                    <div class="graphic_refernce_3"></div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="container_prof">
+                <div>
+                    <h3>Nombre Prof</h3>
+                    <h4>Especialidad</h4>
+                </div>
+                <div>
+                    <div class="row__dias">
+                        <p class="p__dias">Solicitar Turno</p>
+                        <p class="p__dia_true">Lunes</p>
+                        <p class="p__dia_false">Martes</p>
+                        <p class="p__dia_false">Miércoles</p>
+                        <p class="p__dia_false">Jueves</p>
+                        <p class="p__dia_true">Viernes</p>
+                    </div>
+                    <div class="row__hor" id="row__hor">
+                        <!-- <div>
+                            <p class="horario_true">08:30</p>
+                            <p class="horario_true">09:00</p>
+                            <p class="horario_true">10:30</p>
+                            <p class="horario_true">10:00</p>
+                            <p class="horario_true">11:30</p>
+                            <p class="horario_true">12:00</p>
+                            <p class="horario_false">16:00</p>
+                            <p class="horario_false">16:00</p>
+                            <p class="horario_false">17:00</p>
+                            <p class="horario_false">17:30</p>
+                            <p class="horario_false">18:00</p>
+                            <p class="horario_false">18:30</p>
+                        </div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div>
+                            <p class="horario">08:30</p>
+                            <p class="horario">08:30</p>
+                            <p class="horario">08:30</p>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="../scripts/scripts.js"></script>
+</body>
+</html>

@@ -1,5 +1,9 @@
 // Clase 6. Ordenar un array de objetos.
 
+_input0 = document.getElementById("input_professional");
+_input1 = document.getElementById("input_day");
+_input2 = document.getElementById("input_specialization");
+
 class turns {
     constructor(professional, date, hour, client){
         this.professional = professional;
@@ -13,11 +17,55 @@ class turns {
     }
 }
 
+class professional{
+    constructor(professional){
+        this.professional = professional;
+        this.monday = [];
+        this.tuesday = [];
+        this.wednesday = [];
+        this.thursday = [];
+        this.friday = [];
+    }
+    set_hours(day, hour){
+        switch(day){
+            case 0:
+                this.monday.push(hour)
+            case 1:
+                this.tuesday.push(hour)
+            case 2:
+                this.wednesday.push(hour)
+            case 3:
+                this.thursday.push(hour)
+            case 4:
+                this.friday.push(hour)
+        }
+    }
+    get_hours(day){
+        switch (day){
+            case 0:
+                return this.monday;
+            case 1:
+                return this.tuesday;
+            case 2:
+                return this.wednesday;
+            case 3:
+                return this.thursday;
+            case 4:
+                return this.friday;
+        }
+    }
+}
+
 arrayProf = ["Agustín Pérez", "Linus Torvalds", "Bill Gates"];
 arrayDays = ["Lunes","Martes","Miércoles","Jueves","Viernes"];
-arrayHours = ["08:00hs","09:00hs","10:00hs","11:00hs","12:00hs","16:00hs","17:00hs","18:00hs"];
+arrayHours = ["08:30hs","09:00hs","09:30hs","10:00hs","10:30hs","11:00hs","11:30hs","12:00hs","16:00hs","16:30hs","17:00hs","17:30hs","18:00hs","18:30hs"];
 arrayPatient = ["Gisel Aguiar", "Andres López","Matías Martos","Liliana Fonseca","Jorge Rivas","Marcos Leones", "Alicia Ferrero"];
 arrayTurns = [];
+arrayTurnsProf = [];
+
+let prof0 = new professional("Agustín Pérez")
+let prof1 = new professional("Linus Torvalds")
+let prof2 = new professional("Bill Gates")
 
 function crate_data(){
     // Creo un arrays de objetos(turnos) para poder trabajar en su búsqueda, pero se pueden seguir agregando turnos.
@@ -26,12 +74,23 @@ function crate_data(){
     let aux_day = 0;
     let aux_Hour = 0;
     let aux_client = 0;
-    for(let count = 0;count < 15; count++){
+    for(let count = 0;count < 30; count++){
         if(aux_prof === 2){aux_prof = 0}else{aux_prof+=1};
         if(aux_day === 4){aux_day = 0}else{aux_day+=1};
-        if(aux_Hour === 7){aux_Hour = 0}else{aux_Hour+=1};
+        if(aux_Hour === 13){aux_Hour = 0}else{aux_Hour+=1};
         if(aux_client === 5){aux_client = 0}else{aux_client+=1};
         arrayTurns.push(new turns(arrayProf[aux_prof], arrayDays[aux_day], arrayHours[aux_Hour], arrayPatient[aux_client]))
+        switch(aux_prof){
+            case 0:
+                prof0.set_hours(aux_day, arrayHours[aux_Hour]);
+                break;
+            case 1:
+                prof1.set_hours(aux_day, arrayHours[aux_Hour]);
+                break;
+            case 2:
+                prof2.set_hours(aux_day, arrayHours[aux_Hour]);
+                break;
+        }
     }
 }
 
@@ -214,5 +273,128 @@ function interfaz(){
         
     alert("Gracias por utilizar el gestor de turnos de la clínica del doctor Nick Riviera");
 }
+
+function search_prof(prof){
+    let position = prof0.professional.indexOf(prof);
+    console.log(`position = ${position}`)
+    if (position >= 0){
+        console.log("Posición 0")
+        fill_data(0);
+        return true;
+    }else{
+        position = prof1.professional.indexOf(prof);
+        if (position >= 0){
+            console.log("Posición 1")
+            fill_data(1);
+            return true;
+        }else{
+            position = prof2.professional.indexOf(prof);
+            if (position >= 0){
+                console.log("Posición 2")
+                fill_data(2);
+                return true;
+            }else{
+                return false;
+            }
+        }
+    }
+}
+
+function fill_data(prof){
+    let _search_prof;
+    switch(prof){
+        case 0:
+            _search_prof = prof0;
+            break;
+        case 1:
+            _search_prof = prof1;
+            break;
+        case 2:
+            _search_prof = prof2;
+            break;
+    }
+    for (let count = 0; count < 5; count++){
+        console.log(`Profesional buscado = ${_search_prof.professional}`);
+        console.log(`Chusmeando si el prof tiene turnos: ${prof1.monday}`)
+        let row_hor = document.getElementById("row__hor");
+        let insert_div = document.createElement("div");
+        let texto = "";
+        for (let i of arrayHours){
+            switch (count){
+                case 0:
+                    if (_search_prof.monday.includes(i) == true){
+                        texto += `<p class="horario_true">${i}</p>`;
+                    }else{
+                        texto += `<p class="horario_false">${i}</p>`;
+                    }
+                    break;
+                case 1:
+                    if (_search_prof.tuesday.includes(i) == true){
+                        texto += `<p class="horario_true">${i}</p>`;
+                    }else{
+                        texto += `<p class="horario_false">${i}</p>`;
+                    }
+                    break;
+                case 2:
+                    if (_search_prof.wednesday.includes(i) == true){
+                        texto += `<p class="horario_true">${i}</p>`;
+                    }else{
+                        texto += `<p class="horario_false">${i}</p>`;
+                    }
+                    break;
+                case 3:
+                    if (_search_prof.thursday.includes(i) == true){
+                        texto += `<p class="horario_true">${i}</p>`;
+                    }else{
+                        texto += `<p class="horario_false">${i}</p>`;
+                    }
+                    break;
+                case 4:
+                    if (_search_prof.friday.includes(i) == true){
+                        texto += `<p class="horario_true">${i}</p>`;
+                    }else{
+                        texto += `<p class="horario_false">${i}</p>`;
+                    }
+                    break;
+            }
+        }
+        insert_div.innerHTML = texto;
+        console.log(`El texto que me quedó:\n${texto}`);
+        row_hor.appendChild(insert_div);
+    }
+}
+
+function evento_change_input_0(){
+    let value = document.getElementById("input_professional").value;
+    console.log(`Paso 1: value = ${value}`);
+    if (value != ""){
+        let retorno = search_prof(value);
+        console.log(`Paso 2: ${retorno}`);
+
+        if (retorno == false){
+            alert("No se encontró el valor buscado");
+        }
+    }
+}
+
+function evento_change_input_1(){
+    let value = document.getElementById("input_day").value;
+    console.log(`Paso 1: value = ${value}`);
+    if (value != ""){
+        alert("En construcción");
+    }
+}
+
+function evento_change_input_2(){
+    let value = document.getElementById("input_specialization").value;
+    console.log(`Paso 1: value = ${value}`);
+    if (value != ""){
+        alert("En construcción");
+    }
+}
+
+_input0.addEventListener("change", evento_change_input_0);
+_input1.addEventListener("change", evento_change_input_1);
+_input2.addEventListener("change", evento_change_input_2);
 crate_data();
 // interfaz()
