@@ -3,6 +3,13 @@
 _input0 = document.getElementById("input_professional");
 _input1 = document.getElementById("input_day");
 _input2 = document.getElementById("input_specialization");
+button_hours = [];
+
+let row_hor_m = document.getElementById("row__hor_m");
+let row_hor_tu = document.getElementById("row__hor_tu");
+let row_hor_w = document.getElementById("row__hor_w");
+let row_hor_th = document.getElementById("row__hor_th");
+let row_hor_f = document.getElementById("row__hor_f");
 
 class turns {
     constructor(professional, date, hour, client){
@@ -74,7 +81,7 @@ function crate_data(){
     let aux_day = 0;
     let aux_Hour = 0;
     let aux_client = 0;
-    for(let count = 0;count < 30; count++){
+    for(let count = 0;count < 100; count++){
         if(aux_prof === 2){aux_prof = 0}else{aux_prof+=1};
         if(aux_day === 4){aux_day = 0}else{aux_day+=1};
         if(aux_Hour === 13){aux_Hour = 0}else{aux_Hour+=1};
@@ -315,52 +322,75 @@ function fill_data(prof){
     }
     for (let count = 0; count < 5; count++){
         console.log(`Profesional buscado = ${_search_prof.professional}`);
-        console.log(`Chusmeando si el prof tiene turnos: ${prof1.monday}`)
-        let row_hor = document.getElementById("row__hor");
+        console.log(`Chusmeando si el prof tiene turnos: ${prof1.monday}`);
         let insert_div = document.createElement("div");
         let texto = "";
+        let partial_name = 0;
+        let name;
+        let create = false;
+        let p;
         for (let i of arrayHours){
+            create = false;
             switch (count){
                 case 0:
                     if (_search_prof.monday.includes(i) == true){
-                        texto += `<p class="horario_true">${i}</p>`;
+                        name = `m_${partial_name}`;
+                        texto = `<p id="${name}" class="horario_true">${i}</p>`;
+                        insert_div.innerHTML = texto;
+                        row_hor_m.appendChild(insert_div);
+                        p = document.getElementById(`${name}`);
+                        console.log(`Valor de name: ${name}`);
+                        console.log(`La variable está: ${p}`);
+                        create = true;
+                        // button_hours.push(p);
                     }else{
-                        texto += `<p class="horario_false">${i}</p>`;
+                        texto = `<p class="horario_false">${i}</p>`;
+                        insert_div.innerHTML = texto;
+                        row_hor_m.appendChild(insert_div);
                     }
                     break;
                 case 1:
                     if (_search_prof.tuesday.includes(i) == true){
-                        texto += `<p class="horario_true">${i}</p>`;
+                        name = `tu_${partial_name}`;
+                        texto = `<p id="tu_${partial_name}" class="horario_true">${i}</p>`;
+                        insert_div.innerHTML = texto;
+                        row_hor_tu.appendChild(insert_div);
+                        p = document.getElementById(`${name}`);
+                        console.log(`Valor de name: ${name}`);
+                        console.log(`La variable está: ${p}`);
+                        create = true;
                     }else{
-                        texto += `<p class="horario_false">${i}</p>`;
+                        texto = `<p class="horario_false">${i}</p>`;
                     }
                     break;
                 case 2:
                     if (_search_prof.wednesday.includes(i) == true){
-                        texto += `<p class="horario_true">${i}</p>`;
+                        texto = `<p id="w_${partial_name}" class="horario_true">${i}</p>`;
                     }else{
-                        texto += `<p class="horario_false">${i}</p>`;
+                        texto = `<p class="horario_false">${i}</p>`;
                     }
                     break;
                 case 3:
                     if (_search_prof.thursday.includes(i) == true){
-                        texto += `<p class="horario_true">${i}</p>`;
+                        texto = `<p id="th_${partial_name}" class="horario_true">${i}</p>`;
                     }else{
-                        texto += `<p class="horario_false">${i}</p>`;
+                        texto = `<p class="horario_false">${i}</p>`;
                     }
                     break;
                 case 4:
                     if (_search_prof.friday.includes(i) == true){
-                        texto += `<p class="horario_true">${i}</p>`;
+                        texto = `<p id="f_${partial_name}" class="horario_true">${i}</p>`;
                     }else{
-                        texto += `<p class="horario_false">${i}</p>`;
+                        texto = `<p class="horario_false">${i}</p>`;
                     }
                     break;
             }
+            if (create == true){
+                p.addEventListener("click", reserve_turn, name);
+            }
+            partial_name += 1;
+            console.log(`El texto que me quedó:\n${texto}`);
         }
-        insert_div.innerHTML = texto;
-        console.log(`El texto que me quedó:\n${texto}`);
-        row_hor.appendChild(insert_div);
     }
 }
 
@@ -391,6 +421,10 @@ function evento_change_input_2(){
     if (value != ""){
         alert("En construcción");
     }
+}
+
+function reserve_turn(name){
+    console.log(`posta?????? ${name}`);
 }
 
 _input0.addEventListener("change", evento_change_input_0);
