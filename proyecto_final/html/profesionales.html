@@ -11,22 +11,42 @@
 <body>
     <nav class="nav">
         <div class="logo">
-            <div class="logo__div">
-                <img src="../img/logo.png" alt="">
-            </div>
-            <h1>Sanatorio<br>Nick Riviera</h1>
+          <div class="logo__div">
+            <img src="../img/logo.png" alt="" />
+          </div>
+          <h1>Sanatorio<br />Nick Riviera</h1>
         </div>
         <ul class="nav__list">
-            <li><a class="nav-link" href="../index.html">Inicio</a></li>
-            <li><a class="nav-link" href="./turnos.html">Turnos</a></li>
-            <li><a class="nav-link" href="./profesionales.html">Profesionales</a></li>
-            <li><a class="nav-link" href="./contacto.html">Contacto</a></li>
-            <li><a id="User" class="nav-link" href="./html/nosotros.html">Login</a></li>
+          <li><a class="nav-link" href="../index.html">Inicio</a></li>
+          <li><a class="nav-link" href="./turnos.html">Turnos</a></li>
+          <li>
+            <a class="nav-link" href="./profesionales.html">Profesionales</a>
+          </li>
+          <li><a class="nav-link" href="" id="btn_login">Login</a></li>
         </ul>
-    </nav>
-    <main>
-        
+      </nav>
+  
+      <main>  
+        <section class="modal_login">
+          <div class="modal_container">
+            <div class="modal_header">
+              <label for="">Login</label>
+              <button id="btn_modal_X">X</button>
+            </div>
+            <div class="modal_contents">
+              <input id="input_user" type="text" placeholder="Usuario" />
+              <input id="input_pass" type="password" placeholder="Contraseña" />
+              <button id="btn_access">Ingresar</button>
+              <button id="btn_create_user">Crear cuenta</button>
+              <!-- Acá insertamos el mensaje cuando ocurren errores de login -->
+              <div id="modal_warning"></div>
+            </div>
+          </div>
+        </section>
     </main>
-    <script src="../js_proyecto_final/scripts.js"></script>
+    <script src="../scripts/script_db.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="../scripts/script_login.js"></script>
+    <script src="../scripts/scripts.js"></script>
 </body>
 </html>
