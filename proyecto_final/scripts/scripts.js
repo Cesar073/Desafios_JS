@@ -1,22 +1,9 @@
-// Clase 6. Ordenar un array de objetos.
-
-_input0 = document.getElementById("input_professional");
-_input1 = document.getElementById("input_day");
-_input2 = document.getElementById("input_specialization");
-button_hours = [];
-
-let row_hor_m = document.getElementById("row__hor_m");
-let row_hor_tu = document.getElementById("row__hor_tu");
-let row_hor_w = document.getElementById("row__hor_w");
-let row_hor_th = document.getElementById("row__hor_th");
-let row_hor_f = document.getElementById("row__hor_f");
-
 class turns {
-    constructor(professional, date, hour, client){
+    constructor(professional, date, hour, patient){
         this.professional = professional;
         this.date = date;
         this.hour = hour;
-        this.client = client;
+        this.patient = patient;
     }
 
     get_turn(){
@@ -63,10 +50,22 @@ class professional{
     }
 }
 
-arrayProf = ["Agustín Pérez", "Linus Torvalds", "Bill Gates"];
-arrayDays = ["Lunes","Martes","Miércoles","Jueves","Viernes"];
-arrayHours = ["08:30hs","09:00hs","09:30hs","10:00hs","10:30hs","11:00hs","11:30hs","12:00hs","16:00hs","16:30hs","17:00hs","17:30hs","18:00hs","18:30hs"];
-arrayPatient = ["Gisel Aguiar", "Andres López","Matías Martos","Liliana Fonseca","Jorge Rivas","Marcos Leones", "Alicia Ferrero"];
+
+_input0 = document.getElementById("input_professional");
+_input1 = document.getElementById("input_day");
+_input2 = document.getElementById("input_specialization");
+button_hours_monday = [];
+button_hours_tuesday = [];
+button_hours_wednesday = [];
+button_hours_thursday = [];
+button_hours_friday = [];
+
+let row_hor_m = document.getElementById("row__hor_m");
+let row_hor_tu = document.getElementById("row__hor_tu");
+let row_hor_w = document.getElementById("row__hor_w");
+let row_hor_th = document.getElementById("row__hor_th");
+let row_hor_f = document.getElementById("row__hor_f");
+
 arrayTurns = [];
 arrayTurnsProf = [];
 
@@ -320,77 +319,104 @@ function fill_data(prof){
             _search_prof = prof2;
             break;
     }
+    let grid = document.getElementById("row__hor");
+    //Limpiamos los horarios anteriores si es que hay
+    clear_hours(grid);
+
+    let insert_div_day;
+    let texto = "";
+    let partial_name = 0;
+    let name;
+    let p;
+    let name_id;
+
     for (let count = 0; count < 5; count++){
+        // ELIMINAR
         console.log(`Profesional buscado = ${_search_prof.professional}`);
         console.log(`Chusmeando si el prof tiene turnos: ${prof1.monday}`);
-        let insert_div = document.createElement("div");
-        let texto = "";
-        let partial_name = 0;
-        let name;
-        let create = false;
-        let p;
+
+        insert_div_day = document.createElement("div");
+        name_id = `id_div_day_${count}`;
+        insert_div_day.id = name_id;
+        partial_name = 0;
+        texto = "";
+
+        // ELIMINAR
+        console.log(`Nombre del id div day: ${name_id}`)
+
         for (let i of arrayHours){
-            create = false;
             switch (count){
                 case 0:
                     if (_search_prof.monday.includes(i) == true){
                         name = `m_${partial_name}`;
-                        texto = `<p id="${name}" class="horario_true">${i}</p>`;
-                        insert_div.innerHTML = texto;
-                        row_hor_m.appendChild(insert_div);
-                        p = document.getElementById(`${name}`);
-                        console.log(`Valor de name: ${name}`);
-                        console.log(`La variable está: ${p}`);
-                        create = true;
-                        // button_hours.push(p);
+                        texto += `<p id="${name}" class="schedule_available">${i}</p>`;
                     }else{
-                        texto = `<p class="horario_false">${i}</p>`;
-                        insert_div.innerHTML = texto;
-                        row_hor_m.appendChild(insert_div);
+                        texto += `<p class="schedule_not_available">${i}</p>`;
                     }
+                    // ELIMINAR
+                    console.log(`este es el array: ${_search_prof.monday}`)
                     break;
                 case 1:
                     if (_search_prof.tuesday.includes(i) == true){
                         name = `tu_${partial_name}`;
-                        texto = `<p id="tu_${partial_name}" class="horario_true">${i}</p>`;
-                        insert_div.innerHTML = texto;
-                        row_hor_tu.appendChild(insert_div);
-                        p = document.getElementById(`${name}`);
-                        console.log(`Valor de name: ${name}`);
-                        console.log(`La variable está: ${p}`);
-                        create = true;
+                        texto += `<p id="${name}" class="schedule_available">${i}</p>`;
                     }else{
-                        texto = `<p class="horario_false">${i}</p>`;
+                        texto += `<p class="schedule_not_available">${i}</p>`;
                     }
                     break;
                 case 2:
                     if (_search_prof.wednesday.includes(i) == true){
-                        texto = `<p id="w_${partial_name}" class="horario_true">${i}</p>`;
+                        name = `w_${partial_name}`;
+                        texto += `<p id="${name}" class="schedule_available">${i}</p>`;
                     }else{
-                        texto = `<p class="horario_false">${i}</p>`;
+                        texto += `<p class="schedule_not_available">${i}</p>`;
                     }
                     break;
                 case 3:
                     if (_search_prof.thursday.includes(i) == true){
-                        texto = `<p id="th_${partial_name}" class="horario_true">${i}</p>`;
+                        name = `th_${partial_name}`;
+                        texto += `<p id="${name}" class="schedule_available">${i}</p>`;
                     }else{
-                        texto = `<p class="horario_false">${i}</p>`;
+                        texto += `<p class="schedule_not_available">${i}</p>`;
                     }
                     break;
                 case 4:
                     if (_search_prof.friday.includes(i) == true){
-                        texto = `<p id="f_${partial_name}" class="horario_true">${i}</p>`;
+                        name = `f_${partial_name}`;
+                        texto += `<p id="${name}" class="schedule_available">${i}</p>`;
                     }else{
-                        texto = `<p class="horario_false">${i}</p>`;
+                        texto += `<p class="schedule_not_available">${i}</p>`;
                     }
                     break;
-            }
-            if (create == true){
-                p.addEventListener("click", reserve_turn, name);
-            }
+            };
             partial_name += 1;
-            console.log(`El texto que me quedó:\n${texto}`);
-        }
+            insert_div_day.innerHTML = texto;
+            grid.appendChild(insert_div_day);
+        };
+    };
+    const schedules = document.getElementsByClassName("schedule_available");
+    for (let btn_text of schedules){
+        // ELIMINAR
+        // console.log(`valor del array: ${schedules};
+        //             valor de btn_text: ${btn_text}`);
+        btn_text.addEventListener("click", function (){
+            reserve_turn(_search_prof, btn_text.id, btn_text.innerHTML);
+        });
+    };
+}
+
+function clear_hours(grid){
+    if (!!document.getElementById("id_div_day_0") == true){
+        let eliminar = document.getElementById("id_div_day_0");
+        grid.removeChild(eliminar);
+        eliminar = document.getElementById("id_div_day_1");
+        grid.removeChild(eliminar);
+        eliminar = document.getElementById("id_div_day_2");
+        grid.removeChild(eliminar);
+        eliminar = document.getElementById("id_div_day_3");
+        grid.removeChild(eliminar);
+        eliminar = document.getElementById("id_div_day_4");
+        grid.removeChild(eliminar);
     }
 }
 
@@ -423,8 +449,34 @@ function evento_change_input_2(){
     }
 }
 
-function reserve_turn(name){
-    console.log(`posta?????? ${name}`);
+function reserve_turn(prof, day, hours){
+    let array_days;
+    switch (day.slice(0,2)){
+    case "m_":
+        day = "lunes";
+        array_days = prof.monday;
+        break;
+    case "tu":
+        day = "martes";
+        array_days = prof.tuesday;
+        break;
+    case "w_":
+        day = "miércoles";
+        array_days = prof.wednesday;
+        break;
+    case "th":
+        day = "jueves";
+        array_days = prof.thursday;
+        break;
+    case "f_":
+        day = "viernes";
+        array_days = prof.friday;
+        break
+    }
+    _result = confirm(`Confirmar turno para el día ${day} a las ${hours} con el doctor ${prof.professional}`);
+    array_days.push(hours);
+    // ELIMINAR
+    console.log(`Este es el array_days: ${array_days}`)
 }
 
 _input0.addEventListener("change", evento_change_input_0);

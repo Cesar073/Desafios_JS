@@ -1,12 +1,12 @@
 @charset "UTF-8";
 /* GENERALES */
-/* TAMAÑOS */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* BODY */
 body {
     width: 70%;
     margin: 50px auto 50px;
