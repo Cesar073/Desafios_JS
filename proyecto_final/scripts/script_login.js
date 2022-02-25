@@ -1,10 +1,4 @@
-//let open_login = document.getElementById("btn_login");
-// let input_user = document.getElementById("input_user");
-// let input_pass = document.getElementById("input_pass");
-// let btn_access = document.getElementById("btn_access");
-// let btn_create_user = document.getElementById("btn_create_user");
 let modal_login = document.querySelectorAll(".modal_login")[0];
-
 
 $('#btn_login').click((e)=> {
     e.preventDefault();
@@ -22,7 +16,7 @@ let close_login = () => {
 // de lo contrario da un aviso que está faltando algún dato
 let check_data_inputs = () => {
     if (($('#input_user').val() != "") && ($('#input_pass').val()!="")){return true;}else{
-        $('#login_msj_error').show();
+        return false;
     }
 }
 
@@ -34,20 +28,28 @@ let query_identity = () => {
             close_login();
         }else{
             if ($("#login_msj_error").length){$("#modal_warning").empty();};
-            $("#modal_warning").append(`<p id="login_msj_error">
+            $("#modal_warning").append(`<p id="login_msj_error" style="padding: 5px;">
                                         Error en el Usuario o Contraseña</p>`);
-            $("#login_msj_error").delay(2000).fadeOut(400);
+            $("#login_msj_error").fadeOut(200).fadeIn(200).fadeOut(200).fadeIn(1000).fadeOut(500);
         }
     }else{
         if ($("#login_msj_error").length){$("#modal_warning").empty();};
-        $("#modal_warning").append(`<p id="login_msj_error">
+        $("#modal_warning").append(`<p id="login_msj_error" style="padding: 20px;">
                                     Llene ambos campos</p>`);
-        $("#login_msj_error").delay(2000).fadeOut(400);
+        $("#login_msj_error").fadeOut(200).fadeIn(200).fadeOut(200).fadeIn(1000).fadeOut(500);
     }
 }
+// delay(2000)
 
+let create_user = () => {
+    if (check_data_inputs() == true){
+        alert("mother fucker");
+    }
+    if ($("#input_user").val() == localStorage.getItem())
+    close_login();
+}
 
 $('#btn_access').click(query_identity);
-$('#btn_create_user').click(close_login);
+$('#btn_create_user').click(create_user);
 $('#btn_modal_X').click(close_login);
 localStorage.setItem("carritoStorage", JSON.stringify(carrito));

@@ -142,10 +142,15 @@ li {
     cursor: pointer;
 }
 
-#login_msj_error {
-    height: 60px;
-    width: 100%;
+#modal_warning {
     background: hsl(187, 52%, 46%);
+}
+
+#login_msj_error {
+    /* height: 60px; */
+    /* padding: 5px; */
+    width: 100%;
+    /* background: hsl(187, 52%, 46%); */
     font-weight: 600;
     font-size: 19px;
 }
